@@ -1,0 +1,55 @@
+virtual env: mlbase-1
+
+** BEST of Best
+Best Practices:
+===============
+Ultimate Python reference on Packaging - https://packaging.python.org/guides/packaging-namespace-packages/
+See markdown package for a good main.py; C:\zApps\Miniconda3\envs\mlbase-1\Lib\site-packages\markdown
+Ref 1 - https://stackoverflow.com/questions/193161/what-is-the-best-project-structure-for-a-python-application
+Ref 2 - https://medium.com/small-things-about-python/lets-talk-about-python-packaging-6d84b81f1bb5
+** Ref 3 - https://jeffknupp.com/blog/2013/08/16/open-sourcing-a-python-project-the-right-way/
+Ref 3a - https://www.pydanny.com/cookie-project-templates-made-easy.html
+** Ref 4 - https://github.com/numpy/numpy
+
+Ref 1 - Summary
+---------------
+Python projects can be simple.
+top-level directory can be the top-level architecture of your application.
+Another project's PYTHONPATH, then, can include /path/to/quux/foo to reuse the QUUX.foo module.
+
+/quu    <product-name>
+    README
+    setup.py
+    <...> and whatnot.
+    /scripts or /bin for that kind of command-line interface stuff
+    /tests for your tests
+    /lib for your C-language libraries
+    /doc for most documentation
+    /apidoc for the Epydoc-generated API docs.
+    /foo
+    /bar
+    /baz
+
+Ref 2 - Summary
+---------------
+Configure setup.py
+If you are developing the package locally and want to use it for test,
+add the path to the package folder to $PYTHONPATH and it’s good to go.
+If you don’t want to touch the environment variable, just do
+    pip install -e .
+in the root package folder and it will be installed just like a published one.
+Plus, you don’t need to do anything every time you make changes to your code,
+it will keep up-to-date.
+
+Ref 4 - NumPy
+see numpy github for a good structure
+
+
+Build
+=====
+    python setup.py build
+
+Distribute package
+==================
+    pip install .           # deploy locally
+    twine upload dist/*     # deploy to PyPi
